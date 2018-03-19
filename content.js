@@ -4,7 +4,9 @@
 function decodeURLS(){
 	
 	if (location.host === "www.google.com") {
-		var htmlCollection = document.getElementsByClassName("wmt-jstable-cell-inner-div");
+		var htmlCollection;
+		htmlCollection = document.getElementsByClassName("wmt-jstable-cell-inner-div");
+		
 		for (var i = 0, l = htmlCollection.length; i < l; i++) {
 			var children = htmlCollection[i].children;
 			if (children.length > 0) {
@@ -15,7 +17,13 @@ function decodeURLS(){
 	}
 	
 	if (location.host === "analytics.google.com") {
-		var htmlCollection = document.getElementsByClassName("ID-item");
+		var htmlCollection;
+		htmlCollection = document.getElementsByClassName("ID-item");
+		
+		
+		if (htmlCollection.length === 0)
+			htmlCollection = document.getElementsByClassName("_GApu");
+		
 		for (var i = 0, l = htmlCollection.length; i < l; i++) {
 			var elm = htmlCollection[i];
 			elm.innerHTML   =  decodeURIComponent(elm.innerHTML);
